@@ -1,0 +1,6 @@
+/* Basic styles for DoneProject plugin */
+.doneproject-greeting{
+    padding:10px;
+    background:#f5f5f5;
+    border-left:4px solid #0073aa;
+}

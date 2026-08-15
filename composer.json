@@ -1,0 +1,13 @@
+{
+  "name": "liikane/doneproject-plugin",
+  "description": "DoneProject Plugin - PSR-4 skeleton for WordPress plugin",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "DoneProject\\\\": "src/"
+    }
+  }
+}
