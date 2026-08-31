@@ -162,6 +162,12 @@ class Frontend {
         if ( 0 === strpos( $src, $baseurl ) ) {
             $relative = substr( $src, strlen( $baseurl ) );
             $file_path = $basedir . $relative;
+            // Prevent path traversal attacks
+            $file_path = realpath( $file_path );
+            $basedir_real = realpath( $basedir );
+            if ( ! $file_path || ! $basedir_real || 0 !== strpos( $file_path, $basedir_real ) ) {
+                return esc_url( $src );
+            }
             if ( file_exists( $file_path ) ) {
                 // Prepare thumbs directory
                 $thumbs_dir = $basedir . '/doneproject-thumbs';

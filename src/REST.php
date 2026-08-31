@@ -17,7 +17,9 @@ class REST {
         register_rest_route( 'doneproject/v1', '/hello', array(
             'methods' => 'GET',
             'callback' => array( $this, 'hello' ),
-            'permission_callback' => '__return_true',
+            'permission_callback' => function() {
+                return current_user_can( 'read' );
+            },
         ) );
     }
 
