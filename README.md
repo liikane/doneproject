@@ -33,6 +33,14 @@ Paigaldus
 2. Aktiveeri WordPressi adminis (Plugins → DoneProject Plugin).
 3. Lisa lehele/ postitusele shortcode (näide eespool).
 
+Testid
+
+Unit-testid kasutavad PHPUnitit ja WordPressi funktsioonide asendajaid (`tests/wp-stubs.php`), seega WordPressi installatsiooni pole vaja.
+
+1. `composer install`
+2. `composer test` (või `vendor/bin/phpunit`)
+3. Kaetuse aruanne: `php -d pcov.enabled=1 vendor/bin/phpunit --coverage-text` (nõuab pcov või Xdebug laiendust)
+
 Piirangud ja tähelepanekud
 
 - Pages ja category: vaikimisi ei kasuta WordPress pages taksonoomiat "category"; kui kasutad post_type="page" ja sinu lehed ei ole category-ga seotud, shortcode ei tagasta tulemusi — kasuta post tüüpi või registreeri category ka lehtedele.
