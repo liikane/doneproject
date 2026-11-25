@@ -165,7 +165,8 @@ class Frontend {
             // Prevent path traversal attacks
             $file_path = realpath( $file_path );
             $basedir_real = realpath( $basedir );
-            if ( ! $file_path || ! $basedir_real || 0 !== strpos( $file_path, $basedir_real ) ) {
+            $basedir_prefix = $basedir_real ? rtrim( $basedir_real, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR : '';
+            if ( ! $file_path || ! $basedir_real || 0 !== strpos( $file_path, $basedir_prefix ) ) {
                 return esc_url( $src );
             }
             if ( file_exists( $file_path ) ) {
@@ -191,6 +192,10 @@ class Frontend {
                 }
 
                 $resized = $editor->resize( $width, $height, true );
+                if ( is_wp_error( $resized ) || ! $resized ) {
+                    return esc_url( $src );
+                }
+
                 $saved = $editor->save( $thumb_path );
 
                 if ( ! is_wp_error( $saved ) && $saved ) {
